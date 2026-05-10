@@ -1,5 +1,7 @@
 import { Star } from "lucide-react";
+
 import { motion } from "framer-motion";
+
 import { useNavigate } from "react-router-dom";
 
 function ServiceCard({ service }) {
@@ -7,9 +9,10 @@ function ServiceCard({ service }) {
   const navigate = useNavigate();
 
   return (
+
     <motion.div
 
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.03 }}
 
       className="
       bg-white
@@ -23,25 +26,43 @@ function ServiceCard({ service }) {
 
     >
 
-      {/* Image */}
+      {/* IMAGE */}
       <div className="w-full h-60 overflow-hidden">
 
         <img
-          src={service.image}
-          alt={service.title}
+
+          src={
+            service.image ||
+
+            "https://picsum.photos/400/300"
+          }
+
+          alt={
+            service.title ||
+            "Service Image"
+          }
+
+          onError={(e) => {
+
+            e.target.src =
+              "https://picsum.photos/400/300";
+
+          }}
+
           className="
           w-full
           h-full
           object-cover
           "
+
         />
 
       </div>
 
-      {/* Content */}
+      {/* CONTENT */}
       <div className="p-5">
 
-        {/* Title */}
+        {/* TITLE */}
         <h2
           className="
           text-2xl
@@ -49,10 +70,15 @@ function ServiceCard({ service }) {
           text-gray-800
           "
         >
-          {service.title}
+
+          {
+            service.title ||
+            "Service"
+          }
+
         </h2>
 
-        {/* Description */}
+        {/* DESCRIPTION */}
         <p
           className="
           text-gray-500
@@ -61,10 +87,16 @@ function ServiceCard({ service }) {
           leading-6
           "
         >
-          {service.description}
+
+          {
+            service.description ||
+
+            "Professional service available near you."
+          }
+
         </p>
 
-        {/* Rating */}
+        {/* RATING */}
         <div
           className="
           flex
@@ -75,17 +107,28 @@ function ServiceCard({ service }) {
         >
 
           <Star
+
             size={18}
-            className="text-yellow-500 fill-yellow-500"
+
+            className="
+            text-yellow-500
+            fill-yellow-500
+            "
+
           />
 
           <span className="font-semibold">
-            {service.rating}
+
+            {
+              service.rating ||
+              "4.5"
+            }
+
           </span>
 
         </div>
 
-        {/* Price */}
+        {/* PRICE */}
         <div className="mt-5">
 
           <h3
@@ -95,15 +138,31 @@ function ServiceCard({ service }) {
             text-blue-600
             "
           >
-            ₹ {service.price}
+
+            ₹ {
+
+              service.price ||
+
+              "999"
+
+            }
+
           </h3>
 
         </div>
 
-        {/* Button */}
+        {/* BUTTON */}
         <button
 
-          onClick={() => navigate(`/booking/${service.id}`)}
+          onClick={() =>
+
+            navigate(
+
+              `/booking/${service.id}`
+
+            )
+
+          }
 
           className="
           w-full
@@ -118,7 +177,9 @@ function ServiceCard({ service }) {
           "
 
         >
+
           Book Now
+
         </button>
 
       </div>
