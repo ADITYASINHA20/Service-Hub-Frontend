@@ -129,7 +129,7 @@ function Footer() {
         text-gray-400
         "
       >
-        © 2026 CC96. All Rights Reserved.
+        © 2026 Service-Hub. All Rights Reserved.
       </div>
 
     </footer>
