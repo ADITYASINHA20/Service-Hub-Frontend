@@ -36,7 +36,7 @@ function Footer() {
             font-bold
             "
           >
-            CC96
+            Service-Hub
           </h1>
 
           <p
