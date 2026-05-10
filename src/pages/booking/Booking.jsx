@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-import { useParams } from "react-router-dom";
+import {
+  useParams,
+  useNavigate
+} from "react-router-dom";
 
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
@@ -21,6 +24,9 @@ from "../../services/bookingService";
 function Booking() {
 
   const { id } = useParams();
+
+  const navigate =
+    useNavigate();
 
   // SERVICES
   const services = [
@@ -104,6 +110,21 @@ function Booking() {
   const handleBooking = async (e) => {
 
     e.preventDefault();
+
+    // LOGIN CHECK
+    const user =
+      localStorage.getItem("user");
+
+    if (!user) {
+
+      toast.error(
+        "Please login first"
+      );
+
+      navigate("/login");
+
+      return;
+    }
 
     // VALIDATION
     if (
