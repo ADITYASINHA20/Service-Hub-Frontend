@@ -27,7 +27,11 @@ function Services() {
     setSelectedCategory
   ] = useState("All");
 
-  // FETCH SERVICES FROM BACKEND
+  // LOADING
+  const [loading, setLoading] =
+    useState(true);
+
+  // FETCH SERVICES
   useEffect(() => {
 
     console.log(
@@ -56,22 +60,38 @@ function Services() {
 
         console.log(err);
 
+      })
+
+      .finally(() => {
+
+        setLoading(false);
+
       });
 
   }, []);
 
   // CATEGORY LIST
   const categories = [
+
     "All",
+
     "Repair",
+
     "Cleaning",
+
     "Painting",
+
+    "Electrician",
+
+    "Plumbing",
+
   ];
 
   // FILTER SERVICES
   const filteredServices =
     allServices.filter((service) => {
 
+      // SEARCH FILTER
       const matchSearch =
 
         service.title
@@ -80,12 +100,17 @@ function Services() {
             search.toLowerCase()
           );
 
+      // CATEGORY FILTER
       const matchCategory =
 
         selectedCategory === "All" ||
 
-        service.category ===
-        selectedCategory;
+        service.category
+          ?.toLowerCase()
+          .includes(
+            selectedCategory
+              .toLowerCase()
+          );
 
       return (
         matchSearch &&
@@ -152,7 +177,7 @@ function Services() {
             "
           >
 
-            {/* SEARCH BOX */}
+            {/* SEARCH */}
             <div
               className="
               flex
@@ -191,7 +216,7 @@ function Services() {
 
             </div>
 
-            {/* CATEGORY BUTTONS */}
+            {/* FILTER BUTTONS */}
             <div
               className="
               flex
@@ -249,7 +274,7 @@ function Services() {
 
           </div>
 
-          {/* SERVICES GRID */}
+          {/* SERVICES */}
           <div
             className="
             grid
@@ -262,6 +287,20 @@ function Services() {
           >
 
             {
+              loading ?
+
+              <h1
+                className="
+                text-2xl
+                font-semibold
+                text-gray-500
+                "
+              >
+                Loading Services...
+              </h1>
+
+              :
+
               filteredServices.length > 0 ?
 
               filteredServices.map(
