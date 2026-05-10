@@ -58,10 +58,7 @@ function Navbar() {
   }, []);
 // LOGOUT
 const handleLogout = () => {
-
-  localStorage.removeItem("user");
-
-  localStorage.removeItem("vendor");
+localStorage.clear()
 
   navigate("/");
 
