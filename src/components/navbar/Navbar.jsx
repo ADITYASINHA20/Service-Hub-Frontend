@@ -56,17 +56,18 @@ function Navbar() {
       );
 
   }, []);
+// LOGOUT
+const handleLogout = () => {
 
-  // LOGOUT
-  const handleLogout = () => {
+  localStorage.removeItem("user");
 
-    localStorage.removeItem("user");
+  localStorage.removeItem("vendor");
 
-    navigate("/");
+  navigate("/");
 
-    window.location.reload();
+  window.location.reload();
 
-  };
+};
 
   return (
     <>
