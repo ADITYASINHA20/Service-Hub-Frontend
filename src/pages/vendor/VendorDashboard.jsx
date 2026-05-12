@@ -269,17 +269,21 @@ function VendorDashboard() {
         {/* LOGOUT */}
         <button
 
-          onClick={() => {
+     onClick={() => {
 
-            localStorage.clear();
+   localStorage.clear();
 
-            toast.success(
-              "Logged Out"
-            );
+   sessionStorage.clear();
 
-            navigate("/");
+   toast.success("Logged Out");
 
-          }}
+   setTimeout(() => {
+
+      window.location.href = "/";
+
+   }, 1000);
+
+}}
 
           className="
           mt-auto
